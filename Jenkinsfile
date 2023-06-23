@@ -24,7 +24,7 @@ pipeline {
          stage('Docker run ') {
             steps {
                 // Get some code from a GitHub repository
-                sh 'sudo docker stop Mohanty'
+                //sh 'sudo docker stop Mohanty'
                 sh 'sudo docker rm Mohanty'
                 sh 'sudo docker run -itd -p 8082:8080 --name Mohanty tonybbsr/debasis:${BUILD_NUMBER}'
             }
