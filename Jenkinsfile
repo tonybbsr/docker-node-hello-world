@@ -10,7 +10,7 @@ pipeline {
         stage('Git Pull') {
             steps {
                 // Get some code from a GitHub repository
-                git 'https://github.com/tonybbsr/hello-world.git'
+                git 'https://github.com/tonybbsr/docker-node-hello-world.git'
             }
         }
         stage('Maven Build') {
