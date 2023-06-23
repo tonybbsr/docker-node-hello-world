@@ -15,9 +15,12 @@ pipeline {
             }
         }
         stage('Docker push to docker hub') {
-            docker.withRegistry('https://registry.hub.docker.com', 'dockerhub') {
-            sh 'sudo docker push tonybbsr/demo:${BUILD_NUMBER}'
-        }
+          steps {
+                withCredentials([usernamePassword(credentialsId: 'dockerhub', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
+                    sh 'docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD'
+                    sh 'docker push tonybbsr/demo:${BUILD_NUMBER}'
+                }
+          }
      }
          stage('Docker run ') {
             steps {
