@@ -15,15 +15,10 @@ pipeline {
             }
         }
         stage('Docker push to docker hub') {
-            //steps {
-                // Get some code from a GitHub repository
-               // sh 'sudo docker login -u tonybbsr -p Grt@12345'
-                //sh 'sudo docker push tonybbsr/demo:${BUILD_NUMBER}'
-            //}
             docker.withRegistry('https://registry.hub.docker.com', 'dockerhub') {
             sh 'sudo docker push tonybbsr/demo:${BUILD_NUMBER}'
         }
-        }
+     }
          stage('Docker run ') {
             steps {
                 // Get some code from a GitHub repository
