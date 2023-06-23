@@ -11,14 +11,14 @@ pipeline {
     stage('Docker Build') {
             steps {
                 // Get some code from a GitHub repository
-                sh 'sudo docker build -t tonybbsr/debasis:${BUILD_NUMBER} .'
+                sh 'sudo docker build -t tonybbsr/demo:${BUILD_NUMBER} .'
             }
         }
         stage('Docker push to docker hub') {
             steps {
                 // Get some code from a GitHub repository
                 sh 'sudo docker login -u tonybbsr -p Grt@12345'
-                sh 'sudo docker push tonybbsr/debasis:${BUILD_NUMBER}'
+                sh 'sudo docker push tonybbsr/demo:${BUILD_NUMBER}'
             }
         }
          stage('Docker run ') {
@@ -26,7 +26,7 @@ pipeline {
                 // Get some code from a GitHub repository
                 sh 'sudo docker stop Mohanty'
                 sh 'sudo docker rm Mohanty'
-                sh 'sudo docker run -itd -p 8082:4000 --name Mohanty tonybbsr/debasis:${BUILD_NUMBER}'
+                sh 'sudo docker run -itd -p 8082:4000 --name Demo tonybbsr/demo:${BUILD_NUMBER}'
             }
         }
 //         stage('Deploy To Tomcat') {
