@@ -1,11 +1,6 @@
 pipeline {
     agent any
 
-    tools {
-        // Install the Maven version configured as "M3" and add it to the path.
-        maven "M3"
-    }
-
     stages {
         stage('Git Pull') {
             steps {
@@ -13,14 +8,7 @@ pipeline {
                 git 'https://github.com/tonybbsr/docker-node-hello-world.git'
             }
         }
-        stage('Maven Build') {
-            steps {
-                // Get some code from a GitHub repository
-                sh 'mvn install package'
-            }
-        }
-        
-         stage('Docker Build') {
+    stage('Docker Build') {
             steps {
                 // Get some code from a GitHub repository
                 sh 'sudo docker build -t tonybbsr/debasis:${BUILD_NUMBER} .'
