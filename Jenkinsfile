@@ -22,14 +22,7 @@ pipeline {
                 }
           }
      }
-         stage('Docker run ') {
-            steps {
-                // Get some code from a GitHub repository
-                sh 'sudo docker stop Demo'
-                sh 'sudo docker rm Demo'
-                sh 'sudo docker run -itd -p 8082:4000 --name Demo tonybbsr/demo:${BUILD_NUMBER}'
-            }
-        }
+        
        stage('Trigger ManifestUpdate') {
             steps {
                 echo "triggering updatemanifestjob"
